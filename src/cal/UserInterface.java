@@ -97,19 +97,14 @@ public class UserInterface
      * Find out what it was and handle it.
      * @param event The event that has occured.
      */
-    public void actionPerformed(ActionEvent event)
-    {
+    public void actionPerformed(ActionEvent event) {
     	System.out.println("action");
         String command = event.getActionCommand();
 
         if(command.equals("C")) {
         	calc.clear();
-        }
-        else if(command.equals("=")) {
-        	calc.equals();
-        }
-        else calc.buttonPressed(command);
-   	        
+        } else calc.buttonPressed(command);
+ 
         redisplay();
     }
 
