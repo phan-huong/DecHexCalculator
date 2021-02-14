@@ -5,9 +5,8 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
-public class UserInterface
-    implements ActionListener
-{
+public class UserInterface implements ActionListener {
+	
     protected CalcEngine calc;
     protected boolean showingAuthor;
 
@@ -19,8 +18,7 @@ public class UserInterface
      * Create a user interface.
      * @param engine The calculator engine.
      */
-    public UserInterface(CalcEngine engine)
-    {
+    public UserInterface(CalcEngine engine) {
         calc = engine;
         showingAuthor = true;
         makeFrame();
@@ -31,16 +29,14 @@ public class UserInterface
      * Set the visibility of the interface.
      * @param visible true if the interface is to be made visible, false otherwise.
      */
-    public void setVisible(boolean visible)
-    {
+    public void setVisible(boolean visible) {
         frame.setVisible(visible);
     }
 
     /**
      * Make the frame for the user interface.
      */
-    protected void makeFrame()
-    {
+    protected void makeFrame() {
         frame = new JFrame(calc.getTitle());
         
         JPanel contentPane = (JPanel)frame.getContentPane();
@@ -65,7 +61,6 @@ public class UserInterface
             addButton(buttonPanel, "2");
             addButton(buttonPanel, "3");
             addButton(buttonPanel, "/");
-            //buttonPanel.add(new JLabel(" "));
             
             addButton(buttonPanel, "0");
             addButton(buttonPanel, "+");
@@ -85,8 +80,7 @@ public class UserInterface
      * @param panel The panel to receive the button.
      * @param buttonText The text for the button.
      */
-    protected void addButton(Container panel, String buttonText)
-    {
+    protected void addButton(Container panel, String buttonText) {
         JButton button = new JButton(buttonText);
         button.addActionListener(this);
         panel.add(button);
@@ -108,21 +102,13 @@ public class UserInterface
         redisplay();
     }
 
-    /**
-     * Update the interface display to show the current value of the 
-     * calculator.
-     */
-    protected void redisplay()
-    {
+    //Update the interface display to show the current value of the calculator.
+    protected void redisplay() {
         display.setText("" + calc.displayString);
     }
 
-    /**
-     * Toggle the info display in the calculator's status area between the
-     * author and version information.
-     */
-    protected void showInfo()
-    {
+    // Toggle the info display in the calculator's status area between the author and version information.
+    protected void showInfo() {
         if(showingAuthor)
             status.setText(calc.getVersion());
         else

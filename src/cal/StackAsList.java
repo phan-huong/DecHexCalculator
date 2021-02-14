@@ -79,7 +79,6 @@ public class StackAsList<T> implements ADTStack<T> {
 		
 	}
 	
-	
 	private class Node{
 		T value;
 		Node next;
@@ -88,6 +87,4 @@ public class StackAsList<T> implements ADTStack<T> {
 			this.value = value;
 		}
 	}
-	
-	
 }

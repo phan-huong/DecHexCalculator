@@ -12,33 +12,27 @@ public class CalcEngine{
     protected int leftOperand;
     private Postfix pf = new Postfix();
 
-    /**
-     * Create a CalcEngine.
-     */
-    public CalcEngine()
-    {
+
+    //Create a CalcEngine.
+    public CalcEngine() {
         clear();
     }
 
     /**
-     * @return The value that should currently be displayed
-     * on the calculator display.
+     * @return The value that should currently be displayed on the calculator display.
      */
     public String getDisplayValue() {
         return displayString;
     }
 
-    /**
-     * A number button was pressed.
-     * Either start a new operand, or incorporate this number as
-     * the least significant digit of an existing one.
-     * @param number The number pressed on the calculator.
-     */
+    // When a number button is pressed, the value shown in the display
+    // is added by the button's String value.
     public void buttonPressed(String command) {
 		displayString += command;
 	}
     
-    public void evaluatePostfixDec (String ifx) {
+    // Use Postfix to calculate decimal operations
+    public void evaluatePostfixDec(String ifx) {
     	try {
     		displayString = pf.evaluate(pf.infixToPostfix(ifx));
     	}
@@ -47,7 +41,8 @@ public class CalcEngine{
     	}
     }
     
-    public void evaluatePostfixHexa (String ifx) {
+    // Use Postfix to calculate hexadecimal operations
+    public void evaluatePostfixHexa(String ifx) {
     	try {
     		displayString = pf.evaluateHexa(pf.infixToPostfix(ifx));
     	}

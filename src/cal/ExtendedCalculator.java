@@ -29,7 +29,7 @@ public class ExtendedCalculator extends Calculator {
 		ExtendedCalculator c = new ExtendedCalculator();
 		c.show();
 	}
-
+	
 	public void makeHexaPanel() {
 		JPanel hexaButtonPanel = new JPanel(new GridLayout(5, 2));
 		
@@ -48,7 +48,6 @@ public class ExtendedCalculator extends Calculator {
 		
 		hexaButtonPanel.add(openBracketBtn);
 		hexaButtonPanel.add(closeBracketBtn);
-//		gui.addButton(hexaButtonPanel, ")");
 
 		fillButtons(hexaButtonPanel, new String[] { "A", "B", "C", "D", "E", "F" });
 		fillCheckbox(hexaButtonPanel, "hexa");
@@ -66,7 +65,6 @@ public class ExtendedCalculator extends Calculator {
 	 * @param buttons
 	 */
 	public void fillButtons(Container ctn, String[] buttons) {
-
 		ActionListener action = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -74,7 +72,6 @@ public class ExtendedCalculator extends Calculator {
 				ExtendedCalculator.this.redisplay();
 			}
 		};
-
 		for (String caption : buttons) {
 
 			JButton button = new JButton(caption);
@@ -82,7 +79,6 @@ public class ExtendedCalculator extends Calculator {
 			button.setEnabled(this.mode.equals(CalculatorMode.HEXA));
 			ctn.add(button);
 		}
-
 	}
 
 	/**
@@ -116,13 +112,10 @@ public class ExtendedCalculator extends Calculator {
 		ActionListener action = new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				
 				String command = e.getActionCommand();
-
 		        if(command.equals("C")) {
 		        	ExtendedCalculator.this.engine.clear();
-		        }
-		        else if(command.equals("=")) {
+		        } else if(command.equals("=")) {
 		        	switch (mode){
 		        	case DECIMAL:
 		        		ExtendedCalculator.this.engine.evaluatePostfixDec(ExtendedCalculator.this.engine.getDisplayValue());
@@ -132,14 +125,13 @@ public class ExtendedCalculator extends Calculator {
 		        		break;
 		        	}
 		        }
-		        else ExtendedCalculator.this.buttonPressed(command);
-		   	        
+		        else ExtendedCalculator.this.buttonPressed(command);		   	        
 		        ExtendedCalculator.this.redisplay();
 			}
 		};
-
+		
+		// Create new JPanel
 		JPanel contentPane = (JPanel) gui.frame.getContentPane();
-
 		JPanel c = (JPanel) contentPane.getComponent(1);
 		for (Component button : c.getComponents()) {
 			if (button instanceof JButton) {
@@ -150,14 +142,6 @@ public class ExtendedCalculator extends Calculator {
 		}
 	}
 	
-	public int hexaToDecimal(String hexa) {
-		return Integer.parseInt(hexa, 16);
-	}
-
-	public String decimalToHexa(int decimal) {
-		return Integer.toHexString(decimal);
-	}
-
 	public void setHexaMode(boolean isHexa) {
 		if (isHexa) {
 			this.mode = CalculatorMode.HEXA;
@@ -167,7 +151,7 @@ public class ExtendedCalculator extends Calculator {
 		setHexaButtonsEnabled(isHexa);
 		this.redisplay();
 	}
-
+	
 	public void setHexaButtonsEnabled(boolean isHexa) {
 
 		JPanel contentPane = (JPanel) gui.frame.getContentPane( );
@@ -180,12 +164,20 @@ public class ExtendedCalculator extends Calculator {
 			}
 		}
 	}
+	
+	public int hexaToDecimal(String hexa) {
+		return Integer.parseInt(hexa, 16);
+	}
 
-	public void buttonPressed(String command){
+	public String decimalToHexa(int decimal) {
+		return Integer.toHexString(decimal);
+	}
+
+	public void buttonPressed(String command) {
 		engine.displayString += command;
 	}
 
-	public void redisplay(){
+	public void redisplay() {
 		gui.display.setText("" + this.engine.getDisplayValue());
 	}
 

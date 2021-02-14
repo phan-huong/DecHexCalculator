@@ -7,15 +7,6 @@ public class Postfix {
 	public Postfix() {
 		super();
 	}
-
-	public static void main(String[] args) throws Underflow, Overflow {
-		Postfix p = new Postfix();
-		
-		String s = p.infixToPostfix("1+2*3");
-		System.out.println(s);
-//		int f = p.evaluate("63*93/+");
-//		System.out.println(f);
-	}
 	
 	public int precedence(char operator) {
 		switch (operator){
