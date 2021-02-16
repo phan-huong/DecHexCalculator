@@ -1,7 +1,5 @@
 package cal;
 
-import java.util.Scanner;
-
 public class Postfix {
 
 	public Postfix() {
@@ -53,6 +51,7 @@ public class Postfix {
 		}
 	}
     
+	// Read the input String and convert it into Postfix
     public String infixToPostfix(String infix) throws Overflow, Underflow{
         StackAsList<Character> stack = new StackAsList<Character>();
         char[] chars= infix.toCharArray();
@@ -83,6 +82,7 @@ public class Postfix {
         return result;
 	}
 
+    // Function to calculate in Decimal System
 	public String evaluate(String pfx) throws Underflow, Overflow {
 
 		StackAsList<Integer> stack = new StackAsList<Integer>();
@@ -92,7 +92,6 @@ public class Postfix {
 			if (Character.isDigit(element)) {
 				stack.push(Character.getNumericValue(element));
 			} else {
-
 				int rhs = stack.pop();
 				int lhs = stack.pop();
 
@@ -118,14 +117,7 @@ public class Postfix {
 		return stack.pop().toString();
 	}
 	
-	public int hexaToDecimal(String hexa) {
-		return Integer.parseInt(hexa, 16);
-	}
-
-	public String decimalToHexa(int decimal) {
-		return Integer.toHexString(decimal);
-	}
-	
+	// Function to calculate in Hexadecimal System
 	public String evaluateHexa(String pfx) throws Underflow, Overflow {
 
 		StackAsList<Integer> stack = new StackAsList<Integer>();
@@ -135,7 +127,6 @@ public class Postfix {
 			if (isOperand(element)) {
 				stack.push(hexaToDecimal(Character.toString(element)));
 			} else {
-
 				int rhs = stack.pop();
 				int lhs = stack.pop();
 
@@ -161,19 +152,13 @@ public class Postfix {
 		return decimalToHexa(stack.pop());
 	}
 	
-	public void evaluateInfixUserInput() {
-		Scanner sc = new Scanner(System.in);
-		System.out.print("Enter the postfix expression here: ");
-		String userInput = sc.nextLine();
-		Postfix p = new Postfix();
-		try {
-			
-			String s = p.infixToPostfix(userInput);
-			System.out.println("The result: " + evaluate(s));
-			sc.close();
-		}catch(Exception e) {
-			System.out.println("Error: the input you entered cannot be calculated");
-			sc.close();
-		}
+	// Converts decimal to hexa and vice versa
+	public int hexaToDecimal(String hexa) {
+		return Integer.parseInt(hexa, 16);
+	}
+	public String decimalToHexa(int decimal) {
+		return Integer.toHexString(decimal);
 	}
 }
+
+
